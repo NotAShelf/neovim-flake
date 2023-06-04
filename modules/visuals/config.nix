@@ -47,7 +47,7 @@ in {
       vim.autocomplete.sources = {"otter" = "[Otter]";};
       vim.luaConfigRC.otter-nvim = nvim.dag.entryAnywhere ''
         require 'otter.config'.setup {}
-        require 'otter'.activate {'ust'}
+        require 'otter'.activate {'python', 'rust'}
       '';
     })
 
