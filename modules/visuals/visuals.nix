@@ -8,9 +8,11 @@ with builtins; let
   cfg = config.vim.visuals;
 in {
   options.vim.visuals = {
-    enable = mkEnableOption "Visual enhancements.";
+    enable = mkEnableOption "Visual enhancements";
 
-    nvimWebDevicons.enable = mkEnableOption "dev icons. Required for certain plugins [nvim-web-devicons].";
+    nvimWebDevicons.enable = mkEnableOption "Dev icons. Required for certain plugins [nvim-web-devicons]";
+
+    otter-nvim.enable = mkEnableOption "Syntax highlighting for embedded documents, such as codeblocks";
 
     scrollBar.enable = mkOption {
       type = types.bool;

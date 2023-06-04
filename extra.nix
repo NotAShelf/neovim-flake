@@ -69,6 +69,7 @@ inputs: let
         smoothScroll.enable = true;
         cellularAutomaton.enable = true;
         fidget-nvim.enable = true;
+        otter-nvim.enable = true;
         indentBlankline = {
           enable = true;
           fillChar = null;

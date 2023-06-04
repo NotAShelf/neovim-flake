@@ -1188,6 +1188,22 @@
         "type": "github"
       }
     },
+    "otter-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685810109,
+        "narHash": "sha256-3jm59LrTu1eGfvGgmfVgFUOV18p6gmIrhrHW8hddkq4=",
+        "owner": "jmbuhr",
+        "repo": "otter.nvim",
+        "rev": "83d263d261da404d1d2071ad79c99b8ce97d0cec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jmbuhr",
+        "repo": "otter.nvim",
+        "type": "github"
+      }
+    },
     "plenary-nvim": {
       "flake": false,
       "locked": {
@@ -1339,6 +1355,7 @@
         "obsidian-nvim": "obsidian-nvim",
         "onedark": "onedark",
         "orgmode-nvim": "orgmode-nvim",
+        "otter-nvim": "otter-nvim",
         "plenary-nvim": "plenary-nvim",
         "presence-nvim": "presence-nvim",
         "project-nvim": "project-nvim",

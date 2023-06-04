@@ -343,6 +343,11 @@
       flake = false;
     };
 
+    otter-nvim = {
+      url = "github:jmbuhr/otter.nvim";
+      flake = false;
+    };
+
     # Markdown
     glow-nvim = {
       url = "github:ellisonleao/glow.nvim";

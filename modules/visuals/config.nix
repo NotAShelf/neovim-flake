@@ -42,6 +42,15 @@ in {
       vim.startPlugins = ["nvim-web-devicons"];
     })
 
+    (mkIf cfg.otter-nvim.enable {
+      vim.startPlugins = ["otter-nvim"];
+      vim.autocomplete.sources = {"otter" = "[Otter]";};
+      vim.luaConfigRC.otter-nvim = nvim.dag.entryAnywhere ''
+        require 'otter.config'.setup {}
+        require 'otter'.activate {'ust'}
+      '';
+    })
+
     (mkIf cfg.scrollBar.enable {
       vim.startPlugins = ["scrollbar-nvim"];
       vim.luaConfigRC.scrollBar = nvim.dag.entryAnywhere ''
