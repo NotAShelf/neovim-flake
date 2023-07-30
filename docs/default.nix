@@ -1,6 +1,7 @@
 {
+  inputs,
   pkgs,
-  lib ? import ../lib/stdlib-extended.nix pkgs.lib,
+  lib ? import ../lib/stdlib-extended.nix pkgs.lib inputs,
   nmdSrc,
 }: let
   nmd = import nmdSrc {inherit lib pkgs;};

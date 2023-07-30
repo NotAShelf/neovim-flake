@@ -6,7 +6,7 @@
     ...
   }: let
     docs = import ../docs {
-      inherit pkgs;
+      inherit pkgs inputs;
       nmdSrc = inputs.nmd;
     };
   in {

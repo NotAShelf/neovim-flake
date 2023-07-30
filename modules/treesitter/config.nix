@@ -15,7 +15,9 @@ with builtins; let
 in {
   config = mkIf cfg.enable {
     vim.startPlugins =
-      ["nvim-treesitter"]
+      [
+        "nvim-treesitter"
+      ]
       ++ optional usingNvimCmp "cmp-treesitter";
 
     vim.autocomplete.sources = {"treesitter" = "[Treesitter]";};
