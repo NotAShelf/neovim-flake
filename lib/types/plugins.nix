@@ -8,15 +8,17 @@ with lib; let
     (n: v: nameValuePair (removePrefix prefix n) {src = v;})
     (filterAttrs (n: _: hasPrefix prefix n) inputs);
 
+  rawPlugins = fromInputs inputs "plugin-";
+
   # Define the helper function to extract the names from the name-value pairs
   getNames = list: mapAttrsToList (name: _: name) list;
-
-  rawPlugins = fromInputs inputs "plugin-";
 
   # Map all plugin names to a list for pluginType to select from
   mappedPluginList = getNames rawPlugins;
 
-  finalPluginList = mappedPluginList ++ ["nvim-treesitter"];
+  # Append plugins that are not in the mappedPluginList to the plugin list
+
+  finalPluginList = mappedPluginList ++ ["nvim-treesitter" "flutter-tools-patched"];
 
   # either a package from nixpkgs, or a plugin from inputs ( + "nvim-treesitter")
   pluginType = with types;

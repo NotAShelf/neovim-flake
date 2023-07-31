@@ -3,7 +3,8 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+with nvim.binds; let
   cfg = config.vim.utility.motion.leap;
 in {
   config = mkIf cfg.enable {

@@ -24,9 +24,7 @@
       ];
 
       flake = {
-        lib = let
-          nixpkgsLib = import nixpkgs.lib;
-        in {
+        lib = {
           inherit (import ./lib/stdlib-extended.nix nixpkgs.lib inputs) nvim;
           inherit (import ./configuration.nix inputs) neovimConfiguration;
         };

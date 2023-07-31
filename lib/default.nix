@@ -9,4 +9,8 @@
   nmd = import ./nmd.nix;
   lua = import ./lua.nix {inherit lib;};
   binds = import ./binds.nix {inherit lib;};
+
+  imports = [
+    (import ./binds.nix {inherit lib;})
+  ];
 }

@@ -1,4 +1,6 @@
-{lib}: rec {
+{lib}: let
+  inherit (lib) types;
+in rec {
   mkLuaBinding = key: action: desc:
     lib.mkIf (key != null) {
       "${key}" = {
@@ -28,7 +30,7 @@
 
   mkMappingOption = description: default:
     lib.mkOption {
-      type = lib.types.nullOrlib.types.str;
+      type = with types; nullOr str;
       inherit default description;
     };
 

@@ -5,7 +5,7 @@ with builtins; {
     autocomplete = {
       enable = mkEnableOption "enable autocomplete" // {default = false;};
 
-      mappings = {
+      mappings = with nvim.binds; {
         complete = mkMappingOption "Complete [nvim-cmp]" "<C-Space>";
         confirm = mkMappingOption "Confirm [nvim-cmp]" "<CR>";
         next = mkMappingOption "Next item [nvim-cmp]" "<Tab>";
