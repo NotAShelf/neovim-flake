@@ -1,6 +1,6 @@
 {
   imports = [
-    ./dashboard-nvim.nix
     ./config.nix
+    ./image-nvim.nix
   ];
 }
