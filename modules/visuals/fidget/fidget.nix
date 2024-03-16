@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib) mkRemovedOptionModule mkEnableOption mkOption mapAttrs toUpper nvim types mkRenamedOptionModule;
-  rawLua = lua: {__raw = lua;};
+  inherit (lib.generators) mkLuaInline;
 in {
   imports = [
     (mkRenamedOptionModule ["vim" "visuals" "fidget-nvim" "align" "bottom"] ["vim" "visuals" "fidget-nvim" "setupOpts" "notification" "window" "align"])
@@ -44,7 +44,7 @@ in {
           apply = clear:
             if clear
             then
-              rawLua ''
+              mkLuaInline ''
                 function(client_id)
                   local client = vim.lsp.get_client_by_id(client_id)
                   return client and client.name or nil
@@ -60,7 +60,7 @@ in {
               return msg.lsp_client.name
             end
           '';
-          apply = rawLua;
+          apply = mkLuaInline;
         };
         ignore = mkOption {
           description = "Ignore LSP servers by name";
@@ -171,7 +171,7 @@ in {
             default = ''
               require("fidget.progress.display").default_format_message
             '';
-            apply = rawLua;
+            apply = mkLuaInline;
           };
           format_annote = mkOption {
             description = "How to format a progress annotation";
@@ -179,7 +179,7 @@ in {
             default = ''
               function(msg) return msg.title end
             '';
-            apply = rawLua;
+            apply = mkLuaInline;
           };
           format_group_name = mkOption {
             description = "How to format a progress notification group's name";
@@ -187,13 +187,13 @@ in {
             default = ''
               function(group) return tostring(group) end
             '';
-            apply = rawLua;
+            apply = mkLuaInline;
           };
           overrides = mkOption {
             description = "Override options from the default notification config";
             type = types.attrsOf types.str;
             default = {rust_analyzer = "{ name = 'rust-analyzer' }";};
-            apply = mapAttrs (key: lua: rawLua lua);
+            apply = mapAttrs (key: lua: mkLuaInline lua);
           };
         };
 
@@ -221,7 +221,7 @@ in {
           description = "Minimum notifications level";
           type = types.enum ["debug" "info" "warn" "error"];
           default = "info";
-          apply = filter: rawLua "vim.log.levels.${toUpper filter}";
+          apply = filter: mkLuaInline "vim.log.levels.${toUpper filter}";
         };
         history_size = mkOption {
           description = "Number of removed messages to retain in history";
@@ -237,7 +237,7 @@ in {
           description = "How to configure notification groups when instantiated";
           type = types.attrsOf types.str;
           default = {default = "require('fidget.notification').default_config";};
-          apply = mapAttrs (key: lua: rawLua lua);
+          apply = mapAttrs (key: lua: mkLuaInline lua);
         };
         redirect = mkOption {
           description = "Conditionally redirect notifications to another backend";
@@ -249,7 +249,7 @@ in {
               end
             end
           '';
-          apply = rawLua;
+          apply = mkLuaInline;
         };
 
         view = {
@@ -281,7 +281,7 @@ in {
                 return cnt == 1 and msg or string.format("(%dx) %s", cnt, msg)
               end
             '';
-            apply = rawLua;
+            apply = mkLuaInline;
           };
         };
 
@@ -367,7 +367,7 @@ in {
           description = "Minimum logging level";
           type = types.enum ["debug" "error" "info" "trace" "warn" "off"];
           default = "warn";
-          apply = logLevel: rawLua "vim.log.levels.${toUpper logLevel}";
+          apply = logLevel: mkLuaInline "vim.log.levels.${toUpper logLevel}";
         };
         max_size = mkOption {
           description = "Maximum log file size, in KB";
@@ -385,7 +385,7 @@ in {
           default = ''
             string.format("%s/fidget.nvim.log", vim.fn.stdpath("cache"))
           '';
-          apply = rawLua;
+          apply = mkLuaInline;
         };
       };
     };
