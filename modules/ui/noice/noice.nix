@@ -1,7 +1,7 @@
 {lib, ...}: let
-  inherit (lib) mkEnableOption;
+  inherit (lib.options) mkEnableOption;
 in {
   options.vim.ui.noice = {
-    enable = mkEnableOption "UI modification library [noice.nvim]";
+    enable = mkEnableOption "noice.nvim UI modification library";
   };
 }

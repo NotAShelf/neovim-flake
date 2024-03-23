@@ -6,6 +6,7 @@
   inherit (builtins) attrValues attrNames map mapAttrs toJSON isString concatStringsSep filter;
   inherit (lib) mkOption types mapAttrsFlatten filterAttrs optionalString getAttrs literalExpression;
   inherit (lib) nvim;
+  inherit (lib.generators) mkLuaInline;
   inherit (nvim.lua) toLuaObject;
   inherit (nvim.vim) valToVim;
 
@@ -80,7 +81,7 @@
         else config;
       action =
         if action.lua
-        then {"__raw" = action.action;}
+        then mkLuaInline action.action
         else action.action;
     };
   in
