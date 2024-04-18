@@ -136,9 +136,8 @@ inputs: let
       };
 
       filetree = {
-        nvimTree = {
-          enable = true;
-        };
+        nvimTree.enable = false;
+        neo-tree.enable = true;
       };
 
       tabline = {
