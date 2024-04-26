@@ -49,8 +49,24 @@ in {
       default = [];
       example = literalExpression ''
         [
-          "$HOME/.config/nvim-extra" # absolute path, as a string - impure
-          ./nvim # relative path, as a path - pure
+          # absolute path, as a string - impure
+          "$HOME/.config/nvim-extra"
+
+          # relative path, as a path - pure
+          ./nvim
+
+          # source type path - pure and reproducible
+          (builtins.source {
+            path = ./runtime;
+            name = "nvim-runtime";
+          })
+
+          # as a Neovim plugin - pure, reproducible and follows Neovim practices
+          (pkgs.vimUtils.buildVimPlugin {
+             pname = "nvim-runtime";
+             src = ./nvim-runtime; # needs a plugin/init.lua, can refer to modules in a root level lua/ dir
+             version = "#";
+          })
         ]
       '';
 
@@ -124,9 +140,22 @@ in {
           -- Remove default user runtime paths from the
           -- `runtimepath` option to avoid leaking user configuration
           -- into the final neovim wrapper
-          vim.opt.runtimepath:remove(vim.fn.stdpath('config'))              -- $HOME/.config/nvim
-          vim.opt.runtimepath:remove(vim.fn.stdpath('config') .. "/after")  -- $HOME/.config/nvim/after
-          vim.opt.runtimepath:remove(vim.fn.stdpath('data') .. "/site")     -- $HOME/.local/share/nvim/site
+          local defaultRuntimePaths = {}
+          local function addPath(path)
+              table.insert(defaultRuntimePaths, path)
+              table.insert(defaultRuntimePaths, path .. "/site")
+          end
+
+          -- Add standard paths to the table
+          addPath(vim.fn.stdpath('config')) -- $XDG_CONFIG_HOME
+          addPath(vim.fn.stdpath('data'))   -- $XDG_DATA_HOME
+          addPath(vim.fn.stdpath('state'))  -- $XDG_STATE_HOME
+          addPath(vim.fn.stdpath('cache'))  -- $XDG_CACHE_HOME
+
+          -- Remove paths that are already in runtimepath
+          for _, path in ipairs(defaultRuntimePaths) do
+            vim.opt.runtimepath:remove(path)
+          end
         ''}
 
         ${optionalString cfg.enableLuaLoader "vim.loader.enable()"}
@@ -134,9 +163,9 @@ in {
 
       defaultText = literalMD ''
         By default, this option will **append** paths in
-        [vim.additionalRuntimePaths](#opt-vim.additionalRuntimePaths)
+        [](#opt-vim.additionalRuntimePaths)
         to the `runtimepath` and enable the experimental Lua module loader
-        if [vim.enableLuaLoader](#opt-vim.enableLuaLoader) is set to true.
+        if [](#opt-vim.enableLuaLoader) is set to true.
       '';
 
       example = literalExpression ''"$${builtins.readFile ./my-lua-config-pre.lua}"'';
