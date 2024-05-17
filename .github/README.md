@@ -1,9 +1,11 @@
 <div align="center">
     <img src="assets/nvf-logo-work.svg" alt="nvf Logo"  width="200">
+    <br/>
+    <h1>nvf</h1>
 </div>
-<h1 align="center">❄️  nvf</h1>
+
 <div align="center">
-<p>
+  <p>
     <a href="https://github.com/NotAShelf/nvf/releases/latest">
       <img alt="Latest release" src="https://img.shields.io/github/v/release/NotAShelf/nvf?style=for-the-badge&logo=nixos&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41" />
     </a>
@@ -22,7 +24,8 @@
     <a href="https://github.com/NotAShelf/nvf">
       <img alt="Repo Size" src="https://img.shields.io/github/repo-size/NotAShelf/nvf?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-</p>
+  </p>
+</div>
 
 <p align="center">
     <img src="https://stars.medv.io/NotAShelf/nvf.svg", title="stars"/>
@@ -36,18 +39,17 @@
     Nix code.
   </a>
 </div>
-<br/>
-
-> [!WARNING]  
-> Main branch is only updated for small, non-breaking changes. For the latest version of neovim-flake, please see
-> [the list of branches](https://github.com/NotAShelf/neovim-flake/branches) or
-> [open pull requests](https://github.com/NotAShelf/neovim-flake/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc).
-> neovim-flake, at the time, is still being actively developed - and will continue to be so for the foreseeable
-> future.
 
 ---
 
 <div align="center"><p>
+
+[Get Started]: #get-started
+[Documentation]: #documentation
+[Help]: #help
+[Contribute]: #contributing
+[FAQ]: #faq
+[Credits]: #credits
 
 **[<kbd> <br> Get Started <br> </kbd>][Get Started]**
 **[<kbd> <br> Documentation <br> </kbd>][Documentation]**
@@ -57,13 +59,6 @@
 **[<kbd> <br> Credits <br> </kbd>][Credits]**
 
 </p></div>
-
-[Get Started]: #get-started
-[Documentation]: #documentation
-[Help]: #help
-[Contribute]: #contributing
-[FAQ]: #faq
-[Credits]: #credits
 
 ---
 
@@ -113,13 +108,15 @@ featured configuration with `nix` language support by running:
 nix run github:notashelf/nvf#nix
 ```
 
-Please create an issue on the [issue tracker](../../../issues) if you find
+[Issues]: https://github.com/NotAShelf/nvf/issues
+
+Please create an issue on the [issue tracker](issues) if you find
 the documentation lacking or confusing. I also appreciate any contributions
 to the documentation.
 
 ## Help
 
-You can create an issue on the [issue tracker](../../../issues) to ask questions
+You can create an issue on the [issue tracker](issues) to ask questions
 or report bugs. I am not yet on spaces like matrix or IRC, so please use the issue
 tracker for now.
 
@@ -128,7 +125,7 @@ tracker for now.
 I am always looking for new ways to help improve this flake. If you would like
 to contribute, please read the [contributing guide](CONTRIBUTING.md) before
 submitting a pull request. You can also create an issue on the
-[issue tracker](../../../issues) before submitting a pull request if you would
+[issue tracker](issues) before submitting a pull request if you would
 like to discuss a feature or bug fix.
 
 ## FAQ
@@ -137,8 +134,7 @@ like to discuss a feature or bug fix.
 <br/>
 **A**: Maybe! It is not one of our goals to support each and every Neovim
 plugin, however, I am always open to new modules and plugin setup additions
-to **nvf**. Use the [appropritate issue
-template](https://github.com/NotAShelf/nvf/issues/new/choose) and I will
+to **nvf**. Use the [appropritate issue template](issues/new/choose) and I will
 consider a module addition.
 
 **Q**: A plugin I need is not available in **nvf**. What to do?
@@ -146,6 +142,15 @@ consider a module addition.
 **A**: **nvf** exposes several APIs for you to be able to add your own
 plugin configurations! Please see the documentation on how you may do
 this.
+
+**Q**: Main branch is awfully silent, is the project dead?
+<br/>
+**A**: No! Sometimes we branch out (e.g. v0.6) to avoid breaking userspace
+and work in a separate branch until we make sure the new additions are
+implemented in the most comfortable way available to the end user. If you have
+not noticed any activity on the main branch, consider taking a look at the [list
+of branches](https://github.com/NotAShelf/nvf/branches=) or the [list of open
+pull requests](https://github.com/NotAShelf/nvf)
 
 ## Credits
 
@@ -178,9 +183,10 @@ recommend checking their work out.
 
 ## License
 
-Following the [original neovim-flake](https://github.com/jordanisaacs/neovim-flake)
-**nvf** has been made available under the **MIT License**. However, all assets
-are published under the [CC BY License].
+Following the license of the [original neovim-flake](https://github.com/jordanisaacs/neovim-flake),
+**nvf** has been made available under the [**MIT License**](LICENSE). However, all assets
+and documentation are published under the 
+[**CC BY License**](https://github.com/NotAShelf/nvf/blob/main/.github/assets/LICENSE).
 
 ---
 

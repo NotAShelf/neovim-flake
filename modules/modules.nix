@@ -1,7 +1,7 @@
 {
+  check ? true,
   pkgs,
   lib,
-  check ? true,
 }: let
   inherit (lib.modules) mkDefault;
   inherit (lib.lists) concatLists;
@@ -53,7 +53,13 @@
     "warnings"
   ];
 
-  allModules = concatLists [neovim plugins wrapper];
+  # Extra modules, such as deprecation warnings
+  # or renames in one place.
+  extra = map (p: ./extra + "/${p}") [
+    "deprecations.nix"
+  ];
+
+  allModules = concatLists [neovim plugins wrapper extra];
 
   pkgsModule = {config, ...}: {
     config = {

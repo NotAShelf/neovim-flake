@@ -2,20 +2,19 @@
   inherit (lib.nvim.languages) mkEnable;
 in {
   imports = [
-    ./bash
-    ./dart
-    ./elixir
-    ./markdown
-    ./tidal
-
+    ./bash.nix
+    ./dart.nix
     ./clang.nix
     ./css.nix
+    ./elixir.nix
     ./go.nix
     ./html.nix
     ./java.nix
     ./lua.nix
+    ./markdown.nix
     ./nim.nix
     ./nix.nix
+    ./ocaml.nix
     ./php.nix
     ./python.nix
     ./rust.nix
@@ -24,6 +23,7 @@ in {
     ./tailwind.nix
     ./terraform.nix
     ./ts.nix
+    ./typst.nix
     ./zig.nix
   ];
 

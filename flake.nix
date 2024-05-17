@@ -47,7 +47,7 @@
               nixosModules.neovim-flake has been deprecated.
               Please use the nixosModules.nvf instead
             ''
-            self.nixosModules.neovim-flake;
+            self.nixosModules.nvf;
 
           nvf = {
             imports = [(import ./flake/modules/nixos.nix self.packages inputs)];
@@ -76,6 +76,7 @@
 
   # Flake inputs
   inputs = {
+    ## Basic Inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
@@ -98,13 +99,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    ### Plugins
-    # Tidal cycles
-    tidalcycles = {
-      url = "github:mitchmindtree/tidalcycles.nix";
-      inputs.vim-tidal-src.url = "github:tidalcycles/vim-tidal";
-    };
-
+    ## Plugins
     # LSP plugins
     plugin-nvim-lspconfig = {
       url = "github:neovim/nvim-lspconfig";
@@ -183,23 +178,8 @@
       flake = false;
     };
 
-    plugin-elixir-ls = {
-      url = "github:elixir-lsp/elixir-ls";
-      flake = false;
-    };
-
     plugin-elixir-tools = {
       url = "github:elixir-tools/elixir-tools.nvim";
-      flake = false;
-    };
-
-    plugin-glow-nvim = {
-      url = "github:ellisonleao/glow.nvim";
-      flake = false;
-    };
-
-    plugin-image-nvim = {
-      url = "github:3rd/image.nvim";
       flake = false;
     };
 
@@ -234,6 +214,11 @@
     # Filetrees
     plugin-nvim-tree-lua = {
       url = "github:nvim-tree/nvim-tree.lua";
+      flake = false;
+    };
+
+    plugin-neo-tree-nvim = {
+      url = "github:nvim-neo-tree/neo-tree.nvim";
       flake = false;
     };
 
@@ -499,6 +484,16 @@
 
     plugin-nvim-surround = {
       url = "github:kylechui/nvim-surround";
+      flake = false;
+    };
+
+    plugin-glow-nvim = {
+      url = "github:ellisonleao/glow.nvim";
+      flake = false;
+    };
+
+    plugin-image-nvim = {
+      url = "github:3rd/image.nvim";
       flake = false;
     };
 

@@ -1,6 +1,6 @@
 {
   imports = [
-    ./dart.nix
     ./config.nix
+    ./neo-tree.nix
   ];
 }
